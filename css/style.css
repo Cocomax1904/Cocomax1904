@@ -302,6 +302,137 @@ h2 {
   font-weight: 600;
   color: var(--primary);
 }
+/* =========================
+   PROJECTS — image + caption + hover details
+========================= */
+
+.projects-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.project-tile {
+  margin: 0;
+}
+
+.project-tile-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-media {
+  position: relative;
+  border-radius: var(--radius-md); /* ✅ rendu plus “card” comme ton exemple */
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: #fff;
+}
+
+
+.project-media img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.001);
+  transition: transform 0.25s ease;
+}
+
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px;
+  background: linear-gradient(to top, rgba(10, 15, 25, 0.82), rgba(10, 15, 25, 0.15));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-overlay-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+
+.project-overlay-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.project-overlay-text {
+  color: rgba(255,255,255,0.88);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.project-overlay-cta {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 6px;
+  padding: 0;                 /* ✅ plus “texte” */
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: underline; /* ✅ style pro, proche exemple */
+  text-underline-offset: 3px;
+}
+
+
+/* Hover + keyboard focus */
+.project-tile-link:hover .project-media img,
+.project-tile-link:focus-visible .project-media img {
+  transform: scale(1.03);
+}
+
+.project-tile-link:hover .project-overlay,
+.project-tile-link:focus-visible .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Caption under image */
+.project-meta {
+  padding-top: 14px;
+}
+
+.project-name {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.project-desc {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Mobile: keep it clean (no forced hover) */
+@media (max-width: 768px) {
+  .project-media img {
+    height: 220px;
+  }
+
+  .project-overlay {
+    opacity: 0;                 /* ✅ reste clean */
+    transform: translateY(6px);
+  }
+
+}
 
 /* =========================
    CASE STUDY
