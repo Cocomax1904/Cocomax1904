@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maxime Berlocher | AIS Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AIS — Automated plate-swapping system inspired by Prusa Pro AFS, designed to increase 3D print farm uptime.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/blue_cube.ico" type="image/x-icon"/>
+</head>
+
+<body>
+  <!-- HEADER (unchanged, same as other pages) -->
+  <header class="header">
+    <div class="nav">
+
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a href="index.html" class="logo">Maxime Berlocher's Portfolio</a>
+
+      <div class="nav-right">
+        <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn">
+        </a>
+        <a href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" aria-label="Instagram">
+          <img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram">
+        </a>
+        <a href="https://github.com/Cocomax1904" target="_blank" aria-label="GitHub">
+          <img src="assets/icons/github-svgrepo-com.svg" alt="GitHub">
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="container project-page reveal">
+
+    <!-- HERO (different layout vs ALFRED: image first, text second) -->
+    <section class="project-hero">
+      <div class="project-hero-right">
+        <img class="project-hero-image"
+             src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_0603.PNG"
+             alt="AIS — Automated plate swapping system for a 3D printing farm (hero image)">
+      </div>
+
+      <div class="project-hero-left">
+        <p class="project-kicker">Family project • Started Nov 2022 • In progress</p>
+        <h1 class="project-title">AIS — Automated Plate Swapping for a 3D Print Farm</h1>
+        <p class="project-lead">
+          AIS is our in-house automation project inspired by the Prusa Pro Automated Farm System (AFS): a robotic setup
+          designed to swap full build plates for empty ones, so a group of printers can run longer during nights and low-attention periods.
+        </p>
+
+        <div class="project-tags">
+          <span class="tag">Mechatronics</span>
+          <span class="tag">3D print farm automation</span>
+          <span class="tag">Fusion 360 design</span>
+          <span class="tag">Electronics & control</span>
+          <span class="tag">PETG functional parts</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn-primary" href="projects.html">Back to Projects</a>
+          <a class="btn-secondary" href="#gallery">See visuals</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORIGIN STORY / CONTEXT -->
+    <section class="project-section">
+      <div class="project-grid-2">
+        <div>
+          <h2>Origin</h2>
+          <p>
+            The project started in <strong>November 2022</strong> after we saw the Prusa Pro AFS concept at Formnext in Frankfurt.
+            Prusa’s idea is simple and powerful: reduce downtime and push print farm utilization closer to <strong>24/7 production</strong>
+            through automation and management software.
+          </p>
+
+          <div class="callout">
+            <p class="callout-title">Why it matters for us</p>
+            <p class="callout-text">
+              At home we operate around <strong>ten printers</strong>. Our internal tracking showed that despite spending time restarting prints,
+              real printing happens only ~<strong>20%</strong> of the time. A plate-swapping workflow is a direct way to reduce idle time.
+            </p>
+          </div>
+
+          <ul class="bullet-compact">
+            <li>Goal: keep printers productive during nights and low-attention hours</li>
+            <li>Constraint: robust mechanics + safe handling of hot/used plates</li>
+            <li>Approach: modular structure + robotic arm + sensors + reliable power distribution</li>
+          </ul>
+        </div>
+
+        <div class="project-media-card">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_8271.JPEG"
+               alt="Aluminum extrusion used for the AIS frame structure">
+          <p class="media-caption">Frame structure — aluminum extrusion used to build a rigid, modular support system</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLES -->
+    <section class="project-section">
+      <h2>Team & Responsibilities</h2>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <p class="team-name">Frédéric Berlocher</p>
+          <ul class="team-list">
+            <li>Mechanical design in Fusion 360</li>
+            <li>Procurement and supplier coordination</li>
+            <li>3D printing pipeline and mechanical assembly</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <p class="team-name">Maxime Berlocher</p>
+          <ul class="team-list">
+            <li>Power supply architecture & sizing</li>
+            <li>Control strategy and electronics integration</li>
+            <li>Programming foundations & system validation plan</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MECHANICAL DESIGN -->
+    <section class="project-section">
+      <div class="project-grid-2 project-grid-2-reverse">
+        <div class="project-media-card">
+          <video
+            src="assets/photos/project-AIS/IMG_5210.MP4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Fusion 360 concept design walkthrough of the AIS structure and robotic arm">
+          </video>
+
+          <p class="media-caption">Early concept — Fusion 360 design work for the printer rack and robotic plate-handling arm</p>
+        </div>
+
+
+        <div>
+          <h2>Mechanical Architecture</h2>
+          <p>
+            The first phase focused on the foundation: a rigid frame to support printers and an arm concept capable of
+            handling build plates consistently. The structure combines metal parts for stiffness and 3D printed joints/brackets
+            to adapt and iterate quickly.
+          </p>
+
+          <div class="spec-grid">
+            <div class="spec">
+              <p class="spec-label">Structure</p>
+              <p class="spec-value">Aluminum extrusion + custom connectors</p>
+            </div>
+            <div class="spec">
+              <p class="spec-label">Arm parts</p>
+              <p class="spec-value">Mostly 3D printed (PETG)</p>
+            </div>
+            <div class="spec">
+              <p class="spec-label">Iteration</p>
+              <p class="spec-value">Fast redesign cycles from CAD to prints</p>
+            </div>
+            <div class="spec">
+              <p class="spec-label">Assembly</p>
+              <p class="spec-value">Mixed metal + printed interfaces</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELECTRICAL / CONTROL (forward-looking but credible) -->
+    <section class="project-section">
+      <div class="project-grid-2">
+        <div>
+          <h2>Electrical & Control (My focus)</h2>
+          <p>
+            After the mechanical base, we moved to the technical specification of the robotic arm: what we want it to do,
+            how to sense state, and how to control motion safely. At this stage, the work is mainly a structured design effort:
+            requirements, candidate solutions, component shortlist, and integration constraints.
+          </p>
+
+          <div class="callout">
+            <p class="callout-title">Engineering priorities</p>
+            <p class="callout-text">
+              Reliability over speed, clear failure modes, serviceability (easy maintenance), and safe plate handling during unattended runs.
+            </p>
+          </div>
+
+          <ul class="bullet-compact">
+            <li>Power distribution plan for motors, sensors and controllers</li>
+            <li>Motion control architecture (drivers, homing, limits, calibration)</li>
+            <li>Sensor strategy for plate detection and positioning</li>
+            <li>Clean wiring and documentation (schematics, harnessing, labeling)</li>
+          </ul>
+        </div>
+
+        <div class="project-media-card">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_3773.JPEG"
+               alt="Workshop view of AIS frame assembly">
+          <p class="media-caption">Current state — frame and mounting points assembled; next step is arm fabrication and electronics integration</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUS / NEXT STEPS (different section vs ALFRED) -->
+    <section class="project-section">
+      <h2>Status & Next Steps</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 1 — Inspiration & feasibility</p>
+            <p class="timeline-text">
+              Observed the Prusa Pro AFS approach, translated the concept to our home print farm constraints and workflow.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 2 — Mechanical design & procurement</p>
+            <p class="timeline-text">
+              Fusion 360 modeling, selection of aluminum extrusion, and early frame assembly using metal parts and printed connectors.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 3 — System specification (current)</p>
+            <p class="timeline-text">
+              Requirements, component shortlist, power budget, motion architecture, sensor plan, and integration constraints.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 4 — Fabrication & integration (next)</p>
+            <p class="timeline-text">
+              Print PETG arm parts, install motors/sensors, wire controllers, and run iterative tests (homing, repeatability, plate handling).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="project-section">
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <p class="section-sub">
+          Add your build photos as you progress (CAD, frame assembly, printed parts, wiring, tests).
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_0934.JPG" alt="AIS build photo 1">
+          <figcaption>Frame components and hardware prepared for assembly</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_0929.JPG" alt="AIS build photo 2">
+          <figcaption>Aluminum extrusion segments and connectors (modular structure)</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-AIS/IMG_0671.PNG" alt="AIS build photo 3">
+          <figcaption>Early arm concept parts — PETG functional components (planned)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- TAKEAWAYS -->
+    <section class="project-section">
+      <div class="takeaways">
+        <h2>Key Takeaways (so far)</h2>
+        <ul>
+          <li>Print-farm productivity is often limited by handling and setup time, not by printing speed.</li>
+          <li>Automation is only valuable if the system is serviceable and predictable under unattended operation.</li>
+          <li>CAD and modular structures allow fast iteration without locking into a single design too early.</li>
+          <li>Clear specs (power, sensors, motion, failure modes) reduce integration risk later.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (unchanged) -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <p class="footer-title">Get in touch</p>
+      <a class="footer-mail" href="mailto:maximeberlocher@icloud.com">
+        maximeberlocher@icloud.com
+      </a>
+      <button class="footer-copy" type="button" data-copy-email="maximeberlocher@icloud.com">
+        Copy email
+      </button>
+    </div>
+
+    <div class="footer-right">
+      <p>© 2025 — All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>

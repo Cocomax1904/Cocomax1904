@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Maxime Berlocher | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Maxime Berlocher – projets techniques, mécatronique et systèmes embarqués.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/blue_cube.ico" type="image/x-icon"/>
+  
+</head>
+<body>
+  <header class="header">
+    <div class="nav">
+  
+      <!-- Menu gauche -->
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+  
+      <!-- Nom centré -->
+      <a href="index.html" class="logo">Maxime Berlocher's Portfolio</a>
+  
+      <!-- Réseaux sociaux -->
+      <div class="nav-right">
+        <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn">
+        </a>
+        <a href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" aria-label="Instagram">
+          <img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram">
+        </a>
+        <a href="https://github.com/Cocomax1904" target="_blank" aria-label="GitHub">
+          <img src="assets/icons/github-svgrepo-com.svg" alt="GitHub">
+        </a>
+      </div>
+  
+    </div>
+  </header> 
+
+  <main class="container project-page reveal">
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="project-hero-left">
+        <p class="project-kicker">Team project • 5 months • Prototype</p>
+        <h1 class="project-title">ALFRED — Smart Shopping Cart Companion</h1>
+        <p class="project-lead">
+          A motorized rolling cart designed to follow a customer in a supermarket, helping people with reduced mobility
+          carry groceries without pulling or lifting heavy loads.
+        </p>
+
+        <div class="project-tags">
+          <span class="tag">Human-centered design</span>
+          <span class="tag">Embedded electronics</span>
+          <span class="tag">Sensors & obstacle avoidance</span>
+          <span class="tag">3D printing & laser cutting</span>
+          <span class="tag">Scilab testing</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn-primary" href="projects.html">Back to Projects</a>
+          <a class="btn-secondary" href="#gallery">See visuals</a>
+        </div>
+      </div>
+
+      <div class="project-hero-right">
+        <!-- Replace with your best hero image -->
+        <img class="project-hero-image" src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_3454.jpg" alt="ALFRED smart cart prototype">
+      </div>
+    </section>
+
+    <!-- PROBLEM / CONTEXT -->
+    <section class="project-section">
+      <div class="project-grid-2">
+        <div>
+          <h2>Context & Problem</h2>
+          <p>
+            In supermarkets, carrying or pulling a basket can be difficult for people with reduced mobility.
+            ALFRED was built to reduce physical effort and improve autonomy during shopping, while staying safe
+            in dynamic environments (aisles, other customers, obstacles).
+          </p>
+
+          <div class="callout">
+            <p class="callout-title">Goal</p>
+            <p class="callout-text">
+              Create a rolling cart that reliably follows a user and avoids obstacles, with a simple interface
+              and a robust power system for real-world usage.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-media-card">
+          <!-- Replace with a contextual image: prototype in use, workshop, etc. -->
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/project-photo-proto-alfred.jpeg" alt="ALFRED prototype in context">
+          <p class="media-caption">Prototyping overview — Motor testing using QR code recognition</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="project-section">
+      <h2>Team & Responsibilities</h2>
+
+      <div class="team-grid">
+
+        <div class="team-card">
+          <p class="team-name">Théo Gertz</p>
+          <ul class="team-list">
+            <li>Mechanical design & conception</li>
+            <li>Support on cart programming</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <p class="team-name">Sacha Bruckert</p>
+          <ul class="team-list">
+            <li>Motorization & sensors selection</li>
+            <li>Programming (motors / sensors)</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <p class="team-name">Yassir Bellahcen</p>
+          <ul class="team-list">
+            <li>User information module (LED, LCD)</li>
+            <li>HuskyLens camera (QR tracking)</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <p class="team-name">Maxime Berlocher</p>
+          <ul class="team-list">
+            <li>Power supply architecture</li>
+            <li>Battery selection & sizing</li>
+            <li>Wiring diagram & integration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL APPROACH -->
+    <section class="project-section">
+      <div class="project-grid-2 project-grid-2-reverse">
+        <div class="project-media-card">
+          <!-- Replace with wiring schematic / electrical layout image -->
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_5927.JPEG" alt="Electrical and wiring illustration (placeholder)">
+          <p class="media-caption">
+            Electrical system and wiring for the complete prototype
+          </p>
+        </div>
+         <div>
+            <h2>Technical Approach</h2>
+            <p>
+                Our following strategy relied on HuskyLens camera tracking a QR code associated with the customer.
+                For safety and comfort, we tuned the behavior to keep a short tracking distance (around <strong>50 cm</strong>)
+                to avoid pushing into the user.
+            </p>
+            <p>
+                Ultrasonic sensors were used as a safety layer to detect obstacles and reduce collision risks in dynamic aisles.
+                Two motorized wheels provided both propulsion and steering by varying the speed of each motor (differential drive),
+                with a front pivot caster for stability and maneuverability.
+            </p>
+
+            <div class="spec-grid">
+                <div class="spec">
+                <p class="spec-label">Tracking</p>
+                <p class="spec-value">HuskyLens + QR code follow</p>
+                </div>
+                <div class="spec">
+                <p class="spec-label">Following distance</p>
+                <p class="spec-value">≈ 50 cm (target)</p>
+                </div>
+                <div class="spec">
+                <p class="spec-label">Safety</p>
+                <p class="spec-value">Ultrasonic sensors (obstacle avoidance)</p>
+                </div>
+                <div class="spec">
+                <p class="spec-label">Drive base</p>
+                <p class="spec-value">Differential drive + front caster</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Power & Wiring -->
+    <section class="project-section">
+    <div class="project-grid-2">
+        <div>
+        <h2>Power & Wiring (My contribution)</h2>
+        <p>
+            I designed the power architecture, selected the battery format, and produced the wiring diagram used for integration.
+            The system was powered by a <strong>4S lithium battery pack</strong> (≈ <strong>12V</strong>, nominal around <strong>14.6V</strong>).
+        </p>
+
+        <div class="callout">
+            <p class="callout-title">Power design priorities</p>
+            <p class="callout-text">
+            Stable supply under load, safe wiring practices, clear distribution, and easy maintenance during iterative prototyping and testing.
+            </p>
+        </div>
+
+        <ul class="bullet-compact">
+            <li>Battery selection & sizing for a mobile prototype</li>
+            <li>Power distribution and wiring organization</li>
+            <li>Integration support during assembly and testing</li>
+        </ul>
+        </div>
+
+        <div class="project-media-card-1">
+        <!-- Replace with your real wiring diagram photo or schematic -->
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/Sch%C3%A9ma%20de%20cablage_v1.10.1_page-0001.jpg" alt="Wiring diagram placeholder">
+        <p class="media-caption">
+            Wiring diagram of the complete system
+        </p>
+        </div>
+    </div>
+    </section>
+
+    <!-- PROCESS / TIMELINE -->
+    <section class="project-section">
+      <h2>Development Process (5 months)</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 1 — Need & constraints</p>
+            <p class="timeline-text">
+              Define user pain points, safety constraints, and realistic supermarket scenarios.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 2 — Architecture & simulations</p>
+            <p class="timeline-text">
+              Model behaviors and validate early assumptions with Scilab before building.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 3 — Prototyping & fabrication</p>
+            <p class="timeline-text">
+              Iterations using 3D printers, laser cutters, and soldering tools to integrate electronics and mechanics.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-title">Phase 4 — Integration & testing</p>
+            <p class="timeline-text">
+              Validate tracking, obstacle avoidance, power stability, and user interface feedback.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="project-section">
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <p class="section-sub">
+          Replace each image path with your real photos (prototype, workshop, wiring, sensors, tests).
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_4292.JPEG" alt="ALFRED prototype">
+          <figcaption>MDF chassis manufactured using laser cutting</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_4379.JPEG" alt="Workshop tools placeholder">
+          <figcaption>Arduino Mega with expansion shield for system control</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_4384.JPEG" alt="Testing placeholder">
+          <figcaption>HuskyLens camera mounted at the front on its dedicated axis</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_5246.JPEG" alt="Electronics placeholder">
+          <figcaption>Ultrasonic sensors and HuskyLens mounted on adjustable axes</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_5271.JPEG" alt="Sensors placeholder">
+          <figcaption>LCD screen displaying battery charge, driven by a dedicated Arduino Uno</figcaption>
+        </figure>
+
+                <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_5169.JPEG" alt="ALFRED prototype">
+          <figcaption>Initial wiring before cable management</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/project-alfred/IMG_5928.JPEG" alt="Workshop tools placeholder">
+          <figcaption>Final wiring after last connections and cable management</figcaption>
+        </figure>
+        
+         <!-- Video (same size as images) -->
+        <figure class="gallery-item">
+            <video
+            src="assets/photos/project-alfred/IMG_6022.MP4"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata">
+            </video>
+            <figcaption>Power consumption testing during straight-line motion</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- TAKEAWAYS -->
+    <section class="project-section">
+      <div class="takeaways">
+        <h2>Key Takeaways</h2>
+        <ul>
+          <li>Designing for accessibility requires clear safety constraints and simple interaction flows.</li>
+          <li>Layered perception (camera tracking + obstacle sensors) improves robustness in real environments.</li>
+          <li>Power architecture and wiring quality are critical for reliability during long test sessions.</li>
+          <li>Iterative prototyping (3D print / laser cut) accelerated mechanical and integration improvements.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <p class="footer-title">Get in touch</p>
+      <a class="footer-mail" href="mailto:maximeberlocher@icloud.com">
+        maximeberlocher@icloud.com
+      </a>
+      <button class="footer-copy" type="button" data-copy-email="maximeberlocher@icloud.com">
+        Copy email
+      </button>
+    </div>
+
+    <div class="footer-right">
+      <p>© 2025 — All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>
