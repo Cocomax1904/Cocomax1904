@@ -1,20 +1,40 @@
 // ==========================
 // SCROLL REVEAL
 // ==========================
+// ==========================
+// SCROLL REVEAL (fix: reveal also on first load)
+// ==========================
 const reveals = document.querySelectorAll(".reveal");
+
+function revealInViewOnLoad() {
+  // Force a first-pass reveal for elements already in the viewport on initial load
+  reveals.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    // Equivalent to threshold ~0.15 with a simple heuristic:
+    // if the element starts before 85% of viewport height, reveal it.
+    if (rect.top < window.innerHeight * 0.85) {
+      el.classList.add("visible");
+    }
+  });
+}
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
+        // Optional: stop observing once revealed (slightly more performant)
+        revealObserver.unobserve(entry.target);
       }
     });
   },
   { threshold: 0.15 }
 );
 
-reveals.forEach(el => revealObserver.observe(el));
+reveals.forEach((el) => revealObserver.observe(el));
+
+// Ensure reveal triggers even without any scroll (fix for some pages/browsers)
+window.addEventListener("load", revealInViewOnLoad);
 
 // ==========================
 // ACTIVE NAV LINK
@@ -284,3 +304,45 @@ function stopAutoplay() {
 startAutoplay();
 
 }
+(function () {
+  const langSwitch = document.getElementById("langSwitch");
+  if (!langSwitch) return;
+
+  const currentPath = window.location.pathname;
+  const isFrenchPage = currentPath.includes(".fr.html");
+
+  // Update flag icon
+  const flagImg = langSwitch.querySelector("img");
+  flagImg.src = isFrenchPage
+    ? "assets/icons/gb.svg"
+    : "assets/icons/fr.svg";
+
+  // Click = manual toggle
+  langSwitch.addEventListener("click", () => {
+    const newLang = isFrenchPage ? "uk" : "fr";
+    localStorage.setItem("preferredLang", newLang);
+ 
+    redirectToLanguage(newLang);
+  });
+
+  // Auto language detection (only if no manual choice)
+  if (!localStorage.getItem("preferredLang")) {
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    if (browserLang.startsWith("fr") && !isFrenchPage) {
+      redirectToLanguage("fr");
+    }
+  }
+
+  function redirectToLanguage(lang) {
+    let newPath;
+
+    if (lang === "fr") {
+      newPath = currentPath.replace(".html", ".fr.html");
+    } else {
+      newPath = currentPath.replace(".fr.html", ".html");
+    }
+
+    window.location.replace(newPath);
+  }
+})();
