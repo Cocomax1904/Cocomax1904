@@ -346,3 +346,151 @@ startAutoplay();
     window.location.replace(newPath);
   }
 })();
+
+const PAGE = window.location.pathname.split("/").pop();
+const IS_HOME =
+  PAGE === "" ||
+  PAGE === "index.html" ||
+  PAGE === "index.fr.html";
+const IS_SIMPLE = 
+  PAGE === "contact.html" ||
+  PAGE === "contact.fr.html" ||
+  PAGE === "skills.html" ||
+  PAGE === "skills.fr.html" ||
+  PAGE === "resume.html" ||
+  PAGE === "resume.fr.html" ||
+  PAGE === "projects.html" ||
+  PAGE === "projects.fr.html";
+const IS_HEAVY = 
+  PAGE === "project-alfred.html" ||
+  PAGE === "project-alfred.fr.html" ||
+  PAGE === "project-AIS.html" ||
+  PAGE === "project-AIS.fr.html" ||
+  PAGE === "project-embroidery.html" ||
+  PAGE === "project-embroidery.fr.html";
+
+// ==========================
+// PAGE LOADER — WHITE + FADE (min 1s)
+// ==========================
+window.addEventListener("load", () => {
+  const loader = document.getElementById("page-loader");
+  if (!loader) return;
+
+  const MIN_SHOW_MS = IS_HOME ? 2200 : IS_SIMPLE ? 1000 : IS_HEAVY ? 2200 : 1;
+
+
+  const MAX_WAIT_MS = 2500;  // safety fallback (avoid blocking too long)
+
+  const start = performance.now();
+  let done = false;
+
+  const hideLoader = () => {
+    if (done) return;
+    done = true;
+    loader.classList.add("hidden");
+  };
+
+  const tryHide = () => {
+    const elapsed = performance.now() - start;
+    const remaining = Math.max(0, MIN_SHOW_MS - elapsed);
+
+    // Wait two frames so layout (carousel widths) is stable
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTimeout(hideLoader, remaining);
+      });
+    });
+  };
+
+  // Page fully loaded (including images)
+  tryHide();
+
+  // Safety: never block longer than MAX_WAIT_MS
+  setTimeout(hideLoader, MAX_WAIT_MS);
+});
+
+// ==========================
+// PRUSA LOADER ANIMATION (X+Z) — robust init
+// ==========================
+(() => {
+  let rafId = null;
+  let started = false;
+
+  function initPrusaLoader() {
+    if (started) return; // évite double init si le script est chargé 2 fois
+    const svg = document.querySelector('#prusa-loader');
+    if (!svg) return;
+
+    const xAxis = svg.querySelector('#x-axis');
+    const zAxis = svg.querySelector('#z-axis');
+    const printRect =
+      svg.querySelector('#print_mask') ||
+      svg.querySelector('#print-clip-rect');
+    if (!xAxis || !zAxis || !printRect) return;
+
+
+    const maskEl = svg.querySelector('#mask0_2_2'); // adapte l’ID si différent dans ton SVG
+
+
+    started = true;
+
+    // Réglages
+    const cycleMs = IS_HOME ? 2600 : IS_SIMPLE ? 1400 : IS_HEAVY ? 2600 : 400;
+
+    const xAmp = 10;
+    const zAmp = 70;
+    const jitterAmp = 5;
+
+    const baseY = parseFloat(printRect.getAttribute('y'));
+    const baseH = parseFloat(printRect.getAttribute('height'));
+    const maxH  = 70;
+
+    const start = performance.now();
+
+    function easeInOut(t){
+      return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+    }
+
+    function noise(t){
+      const a = Math.sin(2*Math.PI*(t*3.0 + 0.12));
+      const b = Math.sin(2*Math.PI*(t*7.0 + 0.37));
+      return (a*0.6 + b*0.4);
+    }
+
+    function animate(now){
+      const elapsed = (now - start) % cycleMs;
+      const t = elapsed / cycleMs;
+
+      const zT = easeInOut(t);
+      const z = -zAmp * zT;
+
+      const base = Math.sin(2*Math.PI*(t*1.35));
+      const x = base * xAmp + noise(t) * jitterAmp;
+
+      // Z porte le chariot + la tête (CSS transform, plus fiable avec exports Figma)
+      zAxis.style.transform = `translate(0px, ${z.toFixed(2)}px)`;
+
+      // X coulisse dans Z (CSS transform)
+      xAxis.style.transform = `translate(${x.toFixed(2)}px, 0px)`
+
+
+      // Reveal synchronisé avec Z
+      const h = baseH + (maxH - baseH) * zT;
+      const y = baseY - (h - baseH);
+      printRect.setAttribute('height', h.toFixed(2));
+      printRect.setAttribute('y', y.toFixed(2));
+
+      rafId = requestAnimationFrame(animate);
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  // Lance même si DOMContentLoaded est déjà passé
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPrusaLoader, { once: true });
+  } else {
+    initPrusaLoader();
+  }
+})();
+

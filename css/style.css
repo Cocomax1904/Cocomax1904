@@ -1481,10 +1481,13 @@ h2 {
   background: none;
   border: none;
   padding: 0;
-  margin-right: 12px;
+  margin-right: 0px;
   cursor: pointer;
   display: flex;
   align-items: center;
+
+
+  transform: translateY(-2px); /* ajuste finement */
 }
 
 .lang-switch img {
@@ -1501,4 +1504,146 @@ h2 {
 .projects-page,
 main.container.reveal {
   padding-top: clamp(4rem, 8vh, 7rem);
+}
+/* =========================
+   PAGE LOADER — WHITE + FADE (min 1s)
+========================= */
+
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+#page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Minimal indicator (optional) */
+/* 3-dot loading indicator */
+.loader-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-dots span {
+  width: 10px;
+  height: 10px;
+  background: #000000;
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: dotBounce 1.0s infinite ease-in-out;
+}
+
+.loader-dots span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.loader-dots span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  40% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+
+@keyframes loaderPulse {
+  0% { transform: scale(0.6); opacity: 0.35; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.6); opacity: 0.35; }
+}
+
+/* =========================
+   PRUSA LOADER (SVG)
+========================= */
+.loader-prusa{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:120px;
+}
+
+.loader-prusa svg{
+  width:min(420px, 92vw);
+  height:auto;
+}
+
+#x-axis, #z-axis{
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+#prusa-loader { overflow: visible; }
+/* ===== Loader label + layout (Prusa) ===== */
+.loader-prusa{
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+
+.loader-label{
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111111;
+  letter-spacing: 0.02em;
+}
+
+.loader-ellipsis{
+  opacity: 0.55;
+}
+/* ===== Loader layout: SVG + label under ===== */
+.loader-prusa{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+  min-height:120px;
+  text-align:center;
+}
+
+/* Bigger label under SVG */
+.loader-label{
+  font-weight: 800;
+  font-size: 1.25rem; /* augmente si tu veux encore plus gros */
+  color: #111111;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+/* Inline dots animation (reuse dotBounce feel) */
+.dots-inline span{
+  display:inline-block;
+  width: 0.4em;          /* garde un espacement propre */
+  text-align: center;
+  opacity: 0.35;
+  animation: dotBounce 1.0s infinite ease-in-out;
+}
+
+.dots-inline span:nth-child(2){
+  animation-delay: 0.12s;
+}
+
+.dots-inline span:nth-child(3){
+  animation-delay: 0.24s;
 }
