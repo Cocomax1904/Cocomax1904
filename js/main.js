@@ -1,4 +1,13 @@
 // ==========================
+// GLOBAL LANGUAGE (single source of truth)
+// ==========================
+const LANG =
+  localStorage.getItem("preferredLang") ||
+  (navigator.language.startsWith("fr") ? "fr" : "uk");
+
+document.documentElement.setAttribute("data-lang", LANG);
+
+// ==========================
 // SCROLL REVEAL
 // ==========================
 // ==========================
@@ -308,8 +317,9 @@ startAutoplay();
   const langSwitch = document.getElementById("langSwitch");
   if (!langSwitch) return;
 
-  const currentPath = window.location.pathname;
-  const isFrenchPage = currentPath.includes(".fr.html");
+    const currentPath = window.location.pathname;
+    const isFrenchPage = LANG === "fr";
+
 
   // Update flag icon
   const flagImg = langSwitch.querySelector("img");
@@ -327,12 +337,16 @@ startAutoplay();
 
   // Auto language detection (only if no manual choice)
   if (!localStorage.getItem("preferredLang")) {
-    const browserLang = navigator.language || navigator.userLanguage;
+    localStorage.setItem("preferredLang", LANG);
 
-    if (browserLang.startsWith("fr") && !isFrenchPage) {
-      redirectToLanguage("fr");
+    if (
+      (LANG === "fr" && !currentPath.includes(".fr.html")) ||
+      (LANG === "uk" && currentPath.includes(".fr.html"))
+    ) {
+      redirectToLanguage(LANG);
     }
   }
+
   function redirectToLanguage(lang) {
     const path = window.location.pathname;
 
@@ -377,6 +391,18 @@ const IS_HEAVY =
   PAGE === "project-AIS.fr.html" ||
   PAGE === "project-embroidery.html" ||
   PAGE === "project-embroidery.fr.html";
+// ==========================
+// LOADER LANGUAGE TEXT
+// ==========================
+const LOADER_TEXT = {
+  fr: "Chargement en cours",
+  uk: "Loading"
+};
+
+const loaderTextEl = document.querySelector("#loader-text");
+if (loaderTextEl) {
+  loaderTextEl.textContent = LOADER_TEXT[LANG];
+}
 
 // ==========================
 // PAGE LOADER — WHITE + FADE (min 1s)
