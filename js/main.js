@@ -333,18 +333,27 @@ startAutoplay();
       redirectToLanguage("fr");
     }
   }
-
   function redirectToLanguage(lang) {
-    let newPath;
+    const path = window.location.pathname;
+
+    // Sépare dossier + fichier, et gère le cas "/" (home)
+    const endsWithSlash = path.endsWith("/");
+    const dir = endsWithSlash ? path : path.slice(0, path.lastIndexOf("/") + 1);
+    const file = endsWithSlash ? "index.html" : path.split("/").pop();
+
+    let newFile;
 
     if (lang === "fr") {
-      newPath = currentPath.replace(".html", ".fr.html");
+      // index.html -> index.fr.html, resume.html -> resume.fr.html, etc.
+      newFile = file.endsWith(".fr.html") ? file : file.replace(".html", ".fr.html");
     } else {
-      newPath = currentPath.replace(".fr.html", ".html");
+      // index.fr.html -> index.html, resume.fr.html -> resume.html, etc.
+      newFile = file.replace(".fr.html", ".html");
     }
 
-    window.location.replace(newPath);
-  }
+    window.location.href = dir + newFile;
+  } 
+
 })();
 
 const PAGE = window.location.pathname.split("/").pop();
