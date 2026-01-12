@@ -314,6 +314,14 @@ startAutoplay();
 
 }
 (function () {
+
+  function isOnCorrectLanguagePage(lang) {
+    const path = window.location.pathname;
+    const isFrPage = path.includes(".fr.html");
+
+    return (lang === "fr" && isFrPage) || (lang === "uk" && !isFrPage);
+  }
+
   const langSwitch = document.getElementById("langSwitch");
   if (!langSwitch) return;
 
@@ -335,20 +343,21 @@ startAutoplay();
     redirectToLanguage(newLang);
   });
 
-  // Auto language detection (only if no manual choice)
   if (!localStorage.getItem("preferredLang")) {
     localStorage.setItem("preferredLang", LANG);
 
-    if (
-      (LANG === "fr" && !currentPath.includes(".fr.html")) ||
-      (LANG === "uk" && currentPath.includes(".fr.html"))
-    ) {
+    // 🔒 redirection UNIQUEMENT si on est sur la mauvaise version
+    if (!isOnCorrectLanguagePage(LANG)) {
       redirectToLanguage(LANG);
     }
   }
 
+
   function redirectToLanguage(lang) {
-    const path = window.location.pathname;
+    if (isOnCorrectLanguagePage(lang)) return; // 🛑 garde anti-boucle
+
+  const path = window.location.pathname;
+
 
     // Sépare dossier + fichier, et gère le cas "/" (home)
     const endsWithSlash = path.endsWith("/");
