@@ -117,25 +117,66 @@ if (track) {
   let lastX = 0;
   let rafId = null;
 
-  const totalWidth = track.scrollWidth;
-  const halfWidth = totalWidth / 2;
+let totalWidth = 0;
+let halfWidth = 0;
 
-  // Start centered
-  track.scrollLeft = halfWidth;
+function updateWidths() {
+  totalWidth = track.scrollWidth;
+  halfWidth = totalWidth / 2;
+}
+
+// Attend que toutes les images du track aient une taille réelle
+async function waitForImages() {
+  const imgs = Array.from(track.querySelectorAll("img"));
+  await Promise.all(
+    imgs.map((img) => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true }); // on n'embloque pas si une image fail
+      });
+    })
+  );
+}
+
+async function initCarouselMetrics() {
+  await waitForImages();
+  updateWidths();
+  track.scrollLeft = halfWidth; // centre une fois que les largeurs sont correctes
+  startAutoplay();              // ✅ démarre seulement quand les widths sont fiables
+}
+
+
+// Init
+initCarouselMetrics();
+
+// Si le layout change (resize, fonts, etc.)
+window.addEventListener("resize", () => {
+  updateWidths();
+});
+
 
   // --------------------------
   // Helpers
   // --------------------------
-  function normalizeScroll() {
-    // vers la gauche
-    if (track.scrollLeft <= 0) {
-      track.scrollLeft += halfWidth;
-    }
-    // vers la droite
-    else if (track.scrollLeft >= totalWidth - halfWidth) {
-      track.scrollLeft -= halfWidth;
-    }
+  let isNormalizing = false;
+
+function normalizeScroll() {
+  if (isNormalizing) return;
+  if (!totalWidth || !halfWidth) return;
+
+  isNormalizing = true;
+
+  // si on dépasse les bornes, on “wrap”
+  if (track.scrollLeft <= 0) {
+    track.scrollLeft += halfWidth;
+  } else if (track.scrollLeft >= totalWidth - halfWidth) {
+    track.scrollLeft -= halfWidth;
   }
+
+  isNormalizing = false;
+}
+
 
   function applyMomentum() {
     if (Math.abs(velocity) < 0.1) {
@@ -327,8 +368,6 @@ function stopAutoplay() {
   rampStart = 0;
 }
 
-// Démarre l'autoplay au chargement (direct la première fois)
-startAutoplay();
 
 }
 (function () {
@@ -360,6 +399,21 @@ startAutoplay();
  
     redirectToLanguage(newLang);
   });
+// Sync mobile language switch with main one
+const mobileLang = document.getElementById("mobileLangSwitch");
+const mainLang = document.getElementById("langSwitch");
+// Sync mobile flag icon with main flag icon
+if (mobileLang && mainLang) {
+  const mobileImg = mobileLang.querySelector("img");
+  const mainImg = mainLang.querySelector("img");
+  if (mobileImg && mainImg) mobileImg.src = mainImg.src;
+}
+
+if (mobileLang && mainLang){
+  mobileLang.addEventListener("click", () => {
+    mainLang.click();
+  });
+}
 
   if (!localStorage.getItem("preferredLang")) {
     localStorage.setItem("preferredLang", LANG);
@@ -556,3 +610,72 @@ window.addEventListener("load", () => {
   }
 })();
 
+// ==========================
+// BURGER MENU (mobile)
+// ==========================
+function initBurgerMenu() {
+  const btn = document.getElementById("burgerBtn");
+  const menu = document.getElementById("mobileMenu");
+  const backdrop = document.getElementById("menuBackdrop");
+  const closeBtn = document.getElementById("mobileMenuClose");
+
+  if (!btn || !menu || !backdrop) return;
+
+    const openMenu = () => {
+      menu.hidden = false;
+      backdrop.hidden = false;
+
+      // Force l'état fermé au moment où l'élément apparaît
+      menu.classList.remove("is-open");
+
+      // ✅ Ajoute la classe au prochain frame => transition slide-in visible
+      requestAnimationFrame(() => {
+        menu.classList.add("is-open");
+      });
+
+      document.body.classList.add("no-scroll");
+      btn.setAttribute("aria-expanded", "true");
+    };
+
+
+    const closeMenu = () => {
+      // ✅ enlève l’état ouvert (slide out)
+      menu.classList.remove("is-open");
+
+      // laisse le temps à l’animation avant de cacher
+      setTimeout(() => {
+        menu.hidden = true;
+        backdrop.hidden = true;
+      }, 350);
+
+      document.body.classList.remove("no-scroll");
+      btn.setAttribute("aria-expanded", "false");
+    };
+
+
+  btn.addEventListener("click", () => {
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
+
+  backdrop.addEventListener("click", closeMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+
+  // Close on ESC
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // Close when clicking a link
+  menu.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", closeMenu);
+  });
+
+  // If user rotates / resizes to desktop, close menu
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1100) closeMenu();
+  });
+}
+
+initBurgerMenu();
