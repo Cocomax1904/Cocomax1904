@@ -57,25 +57,43 @@ navLinks.forEach(link => {
   }
 });
 // ==========================
-// COPY EMAIL (Footer)
+// FOOTER UTILITIES
 // ==========================
-const copyBtn = document.querySelector("[data-copy-email]");
+const COPY_FEEDBACK = {
+  fr: "Copié ✓",
+  uk: "Copied ✓"
+};
+// 1) Auto year
+const yearEl = document.getElementById("footerYear");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-if (copyBtn) {
-  copyBtn.addEventListener("click", async () => {
-    const email = copyBtn.getAttribute("data-copy-email");
+// 2) Copy email (supports multiple buttons)
+document.querySelectorAll("[data-copy-email]").forEach((btn) => {
+  btn.addEventListener("click", async () => {
+    const email = btn.getAttribute("data-copy-email");
+    if (!email) return;
 
     try {
       await navigator.clipboard.writeText(email);
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = "Copié ✓";
-      setTimeout(() => (copyBtn.textContent = originalText), 1200);
+      const originalText = btn.textContent;
+      btn.textContent = COPY_FEEDBACK[LANG] || "Copied ✓";
+
+      setTimeout(() => (btn.textContent = originalText), 1200);
     } catch (e) {
       // Fallback simple si clipboard indisponible
       window.location.href = `mailto:${email}`;
     }
   });
+});
+
+// 3) Back to top
+const backToTop = document.getElementById("backToTop");
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 }
+
 // ==========================
 // INFINITE CAROUSEL WITH MOMENTUM
 // ==========================

@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Maxime Berlocher | Skills & Competencies</title>
+  <title>Page en construction | Maxime Berlocher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Skills and competencies developed during the first year of the BUT GEII program, with a focus on Conceiving and Verifying technical systems.">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Page en construction – le contenu arrive bientôt.">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allerta&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css">
-  <!-- Favicons (Google-friendly) -->
+
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -16,181 +21,134 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="nav">
-  
-      <!-- Menu gauche -->
-      <nav class="nav-left">
-        <a href="index.html">Home</a>
-        <a href="resume.html">Resume</a>
-        <a href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-  
-      <!-- Nom centré -->
-      <a href="index.html" class="logo">Maxime Berlocher's Portfolio</a>
-  
-      <!-- Réseaux sociaux -->
-      <div class="nav-right">
+<!-- ================= HEADER (identique à index.html) ================= -->
+<header class="header">
+  <div class="nav">
 
-          <!-- Language switch -->
-        <button class="lang-switch" id="langSwitch" aria-label="Change language">
-          <img src="assets/icons/fr.svg" alt="Français">
-        </button>  
+    <nav class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-        <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
-          <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn">
-        </a>
-        <a href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" aria-label="Instagram">
-          <img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram">
-        </a>
-        <a href="https://github.com/Cocomax1904" target="_blank" aria-label="GitHub">
-          <img src="assets/icons/github-svgrepo-com.svg" alt="GitHub">
-        </a>
-      </div>
-  
+    <a href="index.html" class="logo">Maxime Berlocher's Portfolio</a>
+
+    <div class="nav-right">
+      <button class="lang-switch" id="langSwitch" aria-label="Change language">
+        <img src="assets/icons/fr.svg" alt="Français">
+      </button>
+
+      <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
+        <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn">
+      </a>
+      <a href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" aria-label="Instagram">
+        <img src="assets/icons/instagram-svgrepo-com.svg" alt="Instagram">
+      </a>
+      <a href="https://github.com/Cocomax1904" target="_blank" aria-label="GitHub">
+        <img src="assets/icons/github-svgrepo-com.svg" alt="GitHub">
+      </a>
     </div>
-  </header>
 
-  <main class="container project-page reveal">
+  </div>
+</header>
 
-    <!-- INTRO -->
-    <section class="project-section">
-      <h1 class="project-title">Skills & Competencies</h1>
-      <p class="project-lead">
-        This page presents the engineering competencies developed during my first year
-        of the BUT GEII program, mainly through project-based learning (SAÉ),
-        laboratory work and supervised practical sessions.
+<!-- ================= MAIN CONTENT ================= -->
+<main>
+  <section class="construction container reveal" style="text-align:center; padding:6rem 1rem;">
+    
+    <h1 style="font-size:clamp(2.5rem, 6vw, 4rem); margin-bottom:2rem;">
+      🚧 Page under construction
+    </h1>
+
+    <p style="max-width:600px; margin:0 auto 3rem; font-size:1.1rem; opacity:0.8;">
+      This page is currently being updated.  
+      Please check back soon to discover the full content.
+    </p>
+
+    <img 
+      src="assets/gif/construction.gif"
+      alt="Page under construction animation"
+      style="max-width:420px; width:100%; border-radius:12px;"
+    >
+
+  </section>
+</main>
+  <section class="home-carousel reveal">
+
+    <div class="carousel-header">
+      <h2>Projects & Systems</h2>
+      <p class="section-subtitle">
+        Selected mechatronics systems and prototypes.
       </p>
-      <p>
-        In the first year, the training focuses primarily on two core competencies:
-        <strong>Conceiving</strong> and <strong>Verifying</strong> technical systems.
-      </p>
-    </section>
+    </div>
+  
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" aria-label="Scroll left">
+        ‹
+      </button>
+  
+    <div class="carousel-track" id="carouselTrack">
 
-    <!-- WHAT IS A COMPETENCY -->
-    <section class="project-section">
-      <div class="project-grid-2">
-        <div>
-          <h2>Competency-based learning in BUT GEII</h2>
-          <p>
-            In the BUT GEII program, learning is structured around competencies rather than isolated subjects.
-            These competencies are developed and assessed through <strong>SAÉ (Situations d’Apprentissage et d’Évaluation)</strong>,
-            where students work autonomously on technical projects close to real engineering situations.
-          </p>
-          <p>
-            Each project requires understanding a technical objective, proposing solutions,
-            implementing them, and validating their correct operation.
-            This portfolio is therefore an integral part of the learning and evaluation process.
-          </p>
-        </div>
+      <!-- Original set -->
+      <a class="carousel-item" href="project-alfred.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/ALFRED_home.jpg" alt="ALFRED">
+      </a>
 
-        <div class="project-media-card">
-          <!-- IMAGE SUGGESTED:
-               - photo or scan of a competency table (C1 / C2)
-               - or a slide from a SAÉ presentation showing competencies
-          -->
-          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/skills/tableau1.png"
-               alt="Overview of BUT GEII competencies (Conceive and Verify)">
-          <p class="media-caption">
-            Competency-based approach used in the BUT GEII program
-          </p>
-        </div>
-      </div>
-    </section>
+      <a class="carousel-item" href="project-AIS.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/AIS_home.PNG" alt="AIS system">
+      </a>
 
-    <!-- C1 -->
-    <section class="project-section">
-      <div class="project-grid-2 project-grid-2-reverse">
-        <div class="project-media-card">
-          <!-- IMAGE SUGGESTED:
-               - PCB schematic (KiCad)
-               - functional analysis diagram
-               - electronic project documentation
-          -->
-          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/RSL1_home.jpg"
-               alt="Electronic design and schematic for a line-following robot">
-          <p class="media-caption">
-            Design phase — electronic schematics and functional analysis (SAE 1.01)
-          </p>
-        </div>
+      <a class="carousel-item" href="project-lego-robot.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/NXT_home.jpg" alt="Défi NXT 2025">
+      </a>
 
-        <div>
-          <h2>C1 — Conceive</h2>
-          <p>
-            During the first year, the competency <strong>Conceive</strong> focuses on
-            understanding a technical problem and proposing a coherent solution.
-            This includes analyzing requirements, structuring ideas, and formalizing solutions.
-          </p>
-          <p>
-            In the <strong>SAE 1.01 (Line-following robot)</strong>, this competency was strongly mobilized.
-            Starting from a technical contract, we designed our own electronic board,
-            performed a functional analysis, created electrical schematics, and prepared the PCB layout.
-          </p>
-          <p>
-            Compared to other projects, this SAE required conceiving a system almost from scratch,
-            which made the design phase particularly important.
-          </p>
-        </div>
-      </div>
-    </section>
+      <a class="carousel-item" href="project-line-follower.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/RSL_home.png" alt="Robot suiveur de ligne">
+      </a>
 
-    <!-- C2 -->
-    <section class="project-section">
-      <div class="project-grid-2">
-        <div>
-          <h2>C2 — Verify</h2>
-          <p>
-            The competency <strong>Verify</strong> consists in checking that a designed system
-            behaves as expected and complies with the given requirements.
-            Verification involves testing, debugging, and correcting errors.
-          </p>
-          <p>
-            In <strong>SAE 1.02 (Automation)</strong>, verification played a central role.
-            We tested logic diagrams created in <strong>TIA Portal</strong> directly on a real
-            <strong>Siemens S7-1200 PLC</strong>, using indicator lights, push buttons,
-            emergency stops and actuators such as a fan.
-          </p>
-          <p>
-            Errors in logic equations, wiring or safety conditions had to be identified and corrected
-            through supervised testing sessions.
-          </p>
-        </div>
+      <a class="carousel-item" href="project-rotating-stand.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/presentoir_rotatif_home.png" alt="Présentoir rotatif pour le Sarmand d'Or">
+      </a>
 
-        <div class="project-media-card">
-          <!-- IMAGE SUGGESTED:
-               - PLC test bench
-               - Siemens S7-1200 with wired I/O
-               - TIA Portal ladder or FBD screenshot
-          -->
-          <img src="https://ik.imagekit.io/4dtxt0oy2/photos/skills/IMG_3253.JPEG"
-               alt="Testing PLC logic on a Siemens S7-1200 with real inputs and outputs">
-          <p class="media-caption">
-            Verification phase — testing PLC programs on real hardware (SAE 1.02)
-          </p>
-        </div>
-      </div>
-    </section>
+      <a class="carousel-item" href="project-embroidery.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/brodeuse_home.jpg" alt="Embroidery project">
+      </a>
 
-    <!-- CURRENT LEVEL -->
-    <section class="project-section">
-      <div class="takeaways">
-        <h2>Current level and perspective</h2>
-        <p>
-          As a first-year BUT GEII student, my current focus is on learning rigorous engineering methods,
-          understanding how to structure a technical solution, and validating basic systems through testing.
-        </p>
-        <p>
-          These competencies in <strong>Conceiving</strong> and <strong>Verifying</strong> are still in development
-          and will be progressively deepened during the next semesters through more complex projects and systems.
-        </p>
-      </div>
-    </section>
+      <!-- Duplicate set (must match exactly for infinite loop) -->
+      <a class="carousel-item" href="project-alfred.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/ALFRED_home.jpg" alt="ALFRED">
+      </a>
 
-  </main>
+      <a class="carousel-item" href="project-AIS.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/AIS_home.PNG" alt="AIS system">
+      </a>
 
+      <a class="carousel-item" href="project-lego-robot.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/NXT_home.jpg" alt="Défi NXT 2025">
+      </a>
+
+      <a class="carousel-item" href="project-line-follower.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/RSL_home.png" alt="Robot suiveur de ligne">
+      </a>
+
+      <a class="carousel-item" href="project-rotating-stand.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/presentoir_rotatif_home.png" alt="Présentoir rotatif pour le Sarmand d'Or">
+      </a>
+
+      <a class="carousel-item" href="project-embroidery.html">
+        <img src="https://ik.imagekit.io/4dtxt0oy2/photos/home/brodeuse_home.jpg" alt="Embroidery project">
+      </a>
+
+    </div>
+  
+      <button class="carousel-btn right" aria-label="Scroll right">
+        ›
+      </button>
+    </div>
+  
+  </section>
 <footer class="site-footer">
   <div class="container footer-grid">
 
@@ -261,6 +219,7 @@
     </button>
   </div>
 </footer>
+
 
    <div id="page-loader">
     <div class="loader-prusa" aria-label="Loading">
@@ -362,9 +321,9 @@
                 <path id="BUSE 3" d="M145.5 136H148V136.5H145.5V136Z" fill="#38393C"/>
                 <path id="Buse 0" d="M146 136.5H147.5L147 138H146.5L146 136.5Z" fill="#B5AA84"/>
               </g>
-              <text id="ORIGINAL" fill="white" xml:space="preserve" style="white-space: pre" font-family="Allerta" font-size="2.5" letter-spacing="0em"><tspan x="140.5" y="110.483">ORIGINAL</tspan></text>
-              <text id="BERLOCHER_2" fill="white" xml:space="preserve" style="white-space: pre" font-family="Allerta" font-size="2.5" letter-spacing="0em"><tspan x="139" y="113.483">BERLOCHER</tspan></text>
-              <path id="Vis_extrudeur" d="M141 124C141.552 124 142 124.448 142 125C142 125.552 141.552 126 141 126C140.448 126 140 125.552 140 125C140 124.448 140.448 124 141 124ZM151 124C151.552 124 152 124.448 152 125C152 125.552 151.552 126 151 126C150.448 126 150 125.552 150 125C150 124.448 150.448 124 151 124ZM136.5 124C136.776 124 137 124.224 137 124.5C137 124.776 136.776 125 136.5 125C136.224 125 136 124.776 136 124.5C136 124.224 136.224 124 136.5 124ZM136.5 122C136.776 122 137 122.224 137 122.5C137 122.776 136.776 123 136.5 123C136.224 123 136 122.776 136 122.5C136 122.224 136.224 122 136.5 122ZM158 119C159.105 119 160 119.895 160 121C160 122.105 159.105 123 158 123C156.895 123 156 122.105 156 121C156 119.895 156.895 119 158 119ZM136 116C136.552 116 137 116.448 137 117C137 117.552 136.552 118 136 118C135.448 118 135 117.552 135 117C135 116.448 135.448 116 136 116ZM136 112C136.552 112 137 112.448 137 113C137 113.552 136.552 114 136 114C135.448 114 135 113.552 135 113C135 112.448 135.448 112 136 112ZM136 106C136.552 106 137 106.448 137 107C137 107.552 136.552 108 136 108C135.448 108 135 107.552 135 107C135 106.448 135.448 106 136 106ZM155.5 107C155.776 107 156 107.224 156 107.5C156 107.776 155.776 108 155.5 108C155.224 108 155 107.776 155 107.5C155 107.224 155.224 107 155.5 107ZM158.5 107C158.776 107 159 107.224 159 107.5C159 107.776 158.776 108 158.5 108C158.224 108 158 107.776 158 107.5C158 107.224 158.224 107 158.5 107ZM142 99C142.552 99 143 99.4477 143 100C143 100.552 142.552 101 142 101C141.448 101 141 100.552 141 100C141 99.4477 141.448 99 142 99ZM148.5 100C148.776 100 149 100.224 149 100.5C149 100.776 148.776 101 148.5 101C148.224 101 148 100.776 148 100.5C148 100.224 148.224 100 148.5 100ZM151 99C151.552 99 152 99.4477 152 100C152 100.552 151.552 101 151 101C150.448 101 150 100.552 150 100C150 99.4477 150.448 99 151 99Z" fill="#9A9B9E"/>
+              <text id="ORIGINAL" fill="white" xml:space="preserve" style="white-space: pre" font-family="Allerta" font-size="2.5" letter-spacing="0em"><tspan x="140.5" y="115.483">ORIGINAL</tspan></text>
+              <text id="BERLOCHER_2" fill="white" xml:space="preserve" style="white-space: pre" font-family="Allerta" font-size="2.5" letter-spacing="0em"><tspan x="139" y="118.483">BERLOCHER</tspan></text>
+              <path id="Vis_extrudeur" d="M141 129C141.552 129 142 129.448 142 130C142 130.552 141.552 131 141 131C140.448 131 140 130.552 140 130C140 129.448 140.448 129 141 129ZM151 129C151.552 129 152 129.448 152 130C152 130.552 151.552 131 151 131C150.448 131 150 130.552 150 130C150 129.448 150.448 129 151 129ZM136.5 129C136.776 129 137 129.224 137 129.5C137 129.776 136.776 130 136.5 130C136.224 130 136 129.776 136 129.5C136 129.224 136.224 129 136.5 129ZM136.5 127C136.776 127 137 127.224 137 127.5C137 127.776 136.776 128 136.5 128C136.224 128 136 127.776 136 127.5C136 127.224 136.224 127 136.5 127ZM158 124C159.105 124 160 124.895 160 126C160 127.105 159.105 128 158 128C156.895 128 156 127.105 156 126C156 124.895 156.895 124 158 124ZM136 121C136.552 121 137 121.448 137 122C137 122.552 136.552 123 136 123C135.448 123 135 122.552 135 122C135 121.448 135.448 121 136 121ZM136 117C136.552 117 137 117.448 137 118C137 118.552 136.552 119 136 119C135.448 119 135 118.552 135 118C135 117.448 135.448 117 136 117ZM136 111C136.552 111 137 111.448 137 112C137 112.552 136.552 113 136 113C135.448 113 135 112.552 135 112C135 111.448 135.448 111 136 111ZM155.5 112C155.776 112 156 112.224 156 112.5C156 112.776 155.776 113 155.5 113C155.224 113 155 112.776 155 112.5C155 112.224 155.224 112 155.5 112ZM158.5 112C158.776 112 159 112.224 159 112.5C159 112.776 158.776 113 158.5 113C158.224 113 158 112.776 158 112.5C158 112.224 158.224 112 158.5 112ZM142 104C142.552 104 143 104.448 143 105C143 105.552 142.552 106 142 106C141.448 106 141 105.552 141 105C141 104.448 141.448 104 142 104ZM148.5 105C148.776 105 149 105.224 149 105.5C149 105.776 148.776 106 148.5 106C148.224 106 148 105.776 148 105.5C148 105.224 148.224 105 148.5 105ZM151 104C151.552 104 152 104.448 152 105C152 105.552 151.552 106 151 106C150.448 106 150 105.552 150 105C150 104.448 150.448 104 151 104Z" fill="#9A9B9E"/>
             </g>
           </g>
         </g>
