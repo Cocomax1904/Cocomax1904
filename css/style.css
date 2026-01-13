@@ -192,13 +192,14 @@ body {
 
 /* top row */
 .mobile-menu-top{
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 14px;
+  align-items: center;
+  justify-content: center; /* centre le titre */
   margin-bottom: 26px;
 }
 
+b
 .mobile-menu-title{
   margin: 0;
   font-weight: 900;
@@ -208,6 +209,11 @@ body {
   text-transform: uppercase;
   color: #111;
 }
+.mobile-menu-title{
+  text-align: center;
+  width: 100%;
+}
+
 
 .mobile-menu-close{
   width: 44px;
@@ -224,6 +230,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: absolute;
+  left: 0;          /* ou right: 0 si tu préfères */
+  top: 0;
 }
 
 
@@ -248,7 +258,7 @@ body {
 }
 .mobile-menu,
 .mobile-menu-links a{
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: 'Montserrat', sans-serif;
 }
 .mobile-menu-cta{
   display: inline-flex;
@@ -307,8 +317,7 @@ body {
   position: absolute;
   left: 20px;
   right: 20px;
-  bottom: 22px;
-
+  bottom: calc(22px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 18px;
