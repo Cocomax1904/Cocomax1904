@@ -3,7 +3,8 @@
 // ==========================
 const LANG =
   localStorage.getItem("preferredLang") ||
-  (navigator.language.startsWith("fr") ? "fr" : "uk");
+  (navigator.language.toLowerCase().startsWith("fr") ? "fr" : "uk");
+
 
 document.documentElement.setAttribute("data-lang", LANG);
 
@@ -375,81 +376,66 @@ function stopAutoplay() {
   function isOnCorrectLanguagePage(lang) {
     const path = window.location.pathname;
     const isFrPage = path.includes(".fr.html");
-
     return (lang === "fr" && isFrPage) || (lang === "uk" && !isFrPage);
   }
 
-  const langSwitch = document.getElementById("langSwitch");
-  if (!langSwitch) return;
-
-    const currentPath = window.location.pathname;
-    const isFrenchPage = LANG === "fr";
-
-
-  // Update flag icon
-  const flagImg = langSwitch.querySelector("img");
-  flagImg.src = isFrenchPage
-    ? "assets/icons/gb.svg"
-    : "assets/icons/fr.svg";
-
-  // Click = manual toggle
-  langSwitch.addEventListener("click", () => {
-    const newLang = isFrenchPage ? "uk" : "fr";
-    localStorage.setItem("preferredLang", newLang);
- 
-    redirectToLanguage(newLang);
-  });
-// Sync mobile language switch with main one
-const mobileLang = document.getElementById("mobileLangSwitch");
-const mainLang = document.getElementById("langSwitch");
-// Sync mobile flag icon with main flag icon
-if (mobileLang && mainLang) {
-  const mobileImg = mobileLang.querySelector("img");
-  const mainImg = mainLang.querySelector("img");
-  if (mobileImg && mainImg) mobileImg.src = mainImg.src;
-}
-
-if (mobileLang && mainLang){
-  mobileLang.addEventListener("click", () => {
-    mainLang.click();
-  });
-}
-
-  if (!localStorage.getItem("preferredLang")) {
-    localStorage.setItem("preferredLang", LANG);
-
-    // 🔒 redirection UNIQUEMENT si on est sur la mauvaise version
-    if (!isOnCorrectLanguagePage(LANG)) {
-      redirectToLanguage(LANG);
-    }
-  }
-
-
   function redirectToLanguage(lang) {
-    if (isOnCorrectLanguagePage(lang)) return; // 🛑 garde anti-boucle
+    if (isOnCorrectLanguagePage(lang)) return;
 
-  const path = window.location.pathname;
-
-
-    // Sépare dossier + fichier, et gère le cas "/" (home)
+    const path = window.location.pathname;
     const endsWithSlash = path.endsWith("/");
     const dir = endsWithSlash ? path : path.slice(0, path.lastIndexOf("/") + 1);
     const file = endsWithSlash ? "index.html" : path.split("/").pop();
 
     let newFile;
-
     if (lang === "fr") {
-      // index.html -> index.fr.html, resume.html -> resume.fr.html, etc.
       newFile = file.endsWith(".fr.html") ? file : file.replace(".html", ".fr.html");
     } else {
-      // index.fr.html -> index.html, resume.fr.html -> resume.html, etc.
       newFile = file.replace(".fr.html", ".html");
     }
 
     window.location.href = dir + newFile;
-  } 
+  }
+
+  const langSwitch = document.getElementById("langSwitch");
+  if (!langSwitch) return;
+
+  // ✅ FIRST VISIT: set storage + redirect BEFORE touching UI
+  if (!localStorage.getItem("preferredLang")) {
+    localStorage.setItem("preferredLang", LANG);
+    if (!isOnCorrectLanguagePage(LANG)) {
+      redirectToLanguage(LANG);
+      return; // stop, page will change
+    }
+  }
+
+  // ✅ UI based on REAL page (not LANG)
+  const isFrPage = window.location.pathname.includes(".fr.html");
+
+  const flagImg = langSwitch.querySelector("img");
+  if (flagImg) {
+    flagImg.src = isFrPage ? "assets/icons/gb.svg" : "assets/icons/fr.svg";
+  }
+
+  langSwitch.addEventListener("click", () => {
+    const nowFr = window.location.pathname.includes(".fr.html");
+    const newLang = nowFr ? "uk" : "fr";
+    localStorage.setItem("preferredLang", newLang);
+    redirectToLanguage(newLang);
+  });
+
+  // Mobile sync
+  const mobileLang = document.getElementById("mobileLangSwitch");
+  if (mobileLang) {
+    const mobileImg = mobileLang.querySelector("img");
+    const mainImg = langSwitch.querySelector("img");
+    if (mobileImg && mainImg) mobileImg.src = mainImg.src;
+
+    mobileLang.addEventListener("click", () => langSwitch.click());
+  }
 
 })();
+
 
 const PAGE = window.location.pathname.split("/").pop();
 const IS_HOME =
@@ -614,10 +600,10 @@ window.addEventListener("load", () => {
 // BURGER MENU (mobile)
 // ==========================
 function initBurgerMenu() {
-  const btn = document.getElementById("burgerBtn");
+  const btn = document.getElementById("burgerOpen");
   const menu = document.getElementById("mobileMenu");
   const backdrop = document.getElementById("menuBackdrop");
-  const closeBtn = document.getElementById("mobileMenuClose");
+  const closeBtn = document.getElementById("burgerClose");
 
   if (!btn || !menu || !backdrop) return;
 
@@ -625,12 +611,19 @@ function initBurgerMenu() {
       menu.hidden = false;
       backdrop.hidden = false;
 
-      // Force l'état fermé au moment où l'élément apparaît
-      menu.classList.remove("is-open");
+      // reset état
+      menu.classList.remove("is-open", "is-content-visible");
+      setBurgerState(false);
 
-      // ✅ Ajoute la classe au prochain frame => transition slide-in visible
       requestAnimationFrame(() => {
+        // 1) animation burger + ouverture du panneau
+        setBurgerState(true);
         menu.classList.add("is-open");
+
+        // 2) contenu après délai (0.3s)
+        window.setTimeout(() => {
+          menu.classList.add("is-content-visible");
+        }, 300); // mets 500 si tu veux plus lent
       });
 
       document.body.classList.add("no-scroll");
@@ -638,11 +631,17 @@ function initBurgerMenu() {
     };
 
 
-    const closeMenu = () => {
-      // ✅ enlève l’état ouvert (slide out)
-      menu.classList.remove("is-open");
 
-      // laisse le temps à l’animation avant de cacher
+
+    const closeMenu = () => {
+      // cacher le contenu immédiatement (pas de délai à la fermeture)
+      menu.classList.remove("is-content-visible");
+      setBurgerState(false);
+
+      requestAnimationFrame(() => {
+        menu.classList.remove("is-open");
+      });
+
       setTimeout(() => {
         menu.hidden = true;
         backdrop.hidden = true;
@@ -652,30 +651,42 @@ function initBurgerMenu() {
       btn.setAttribute("aria-expanded", "false");
     };
 
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
 
-  btn.addEventListener("click", () => {
-    const isOpen = btn.getAttribute("aria-expanded") === "true";
-    if (isOpen) closeMenu();
-    else openMenu();
-  });
+    backdrop.addEventListener("click", closeMenu);
+    closeBtn?.addEventListener("click", closeMenu);
 
-  backdrop.addEventListener("click", closeMenu);
-  closeBtn?.addEventListener("click", closeMenu);
+    // Close on ESC
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
 
-  // Close on ESC
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
+    // Close when clicking a link
+    menu.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", closeMenu);
+    });
 
-  // Close when clicking a link
-  menu.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", closeMenu);
-  });
-
-  // If user rotates / resizes to desktop, close menu
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 1100) closeMenu();
-  });
+    // If user rotates / resizes to desktop, close menu
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1100) closeMenu();
+    });
 }
 
 initBurgerMenu();
+// ==========================
+// BURGER ICON ANIMATION (McButton style)
+// ==========================
+const burgerOpen = document.getElementById("burgerOpen");
+const burgerClose = document.getElementById("burgerClose");
+
+function setBurgerState(isOpen){
+  burgerOpen?.classList.toggle("is-active", isOpen);
+  burgerClose?.classList.toggle("is-active", isOpen);
+
+  // synchro ARIA (accessibilité)
+  burgerOpen?.setAttribute("aria-expanded", String(isOpen));
+}

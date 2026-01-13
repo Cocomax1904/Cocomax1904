@@ -194,12 +194,12 @@ body {
 .mobile-menu-top{
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center; /* centre le titre */
+  align-items: center;       /* CENTRAGE VERTICAL RÉEL */
+  justify-content: center;   /* CENTRAGE HORIZONTAL DU TITRE */
+  height: 44px;              /* même hauteur que le bouton X */
   margin-bottom: 26px;
 }
 
-b
 .mobile-menu-title{
   margin: 0;
   font-weight: 900;
@@ -212,6 +212,11 @@ b
 .mobile-menu-title{
   text-align: center;
   width: 100%;
+  display: flex;
+  align-items: center;   /* centre le texte dans sa box */
+  justify-content: center;
+
+  height: 44px;
 }
 
 
@@ -222,7 +227,7 @@ b
   border: 1px solid rgba(0,0,0,0.12);
   background: rgba(255,255,255,0.35);
   cursor: pointer;
-
+  transform: translateY(-50%); /* centre optique vertical */
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
@@ -233,7 +238,7 @@ b
 
   position: absolute;
   left: 0;          /* ou right: 0 si tu préfères */
-  top: 0;
+  top: 50%;
 }
 
 
@@ -304,6 +309,15 @@ b
     display: none !important;
   }
 }
+/* Cache le burger sur desktop */
+@media (min-width: 1101px){
+  #burgerOpen{ display: none; }
+}
+
+/* Affiche le burger sur mobile */
+@media (max-width: 1100px){
+  #burgerOpen{ display: inline-flex; }
+}
 
 .mobile-menu[hidden] .mobile-menu-bottom{
   display: none;
@@ -315,9 +329,9 @@ b
 
 .mobile-menu-bottom{
   position: absolute;
-  left: 20px;
+  left: 10px;
   right: 20px;
-  bottom: calc(22px + env(safe-area-inset-bottom));
+  bottom: calc(-200px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -2170,4 +2184,123 @@ main.container.reveal {
   .footer-nav a {
     white-space: nowrap;
   }
+}
+.mobile-menu-footer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 110px; /* hauteur du faux footer */
+  background-color: #4b372f; /* marron (ajuste si besoin) */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobile-menu-footer span{
+  font-size: 10px;
+  color: #9a9a9a; /* gris discret */
+  opacity: 0.7;
+}
+/* === Animated Burger Button (SliderRevolution style, no jQuery) === */
+.McButton{
+  --bar-w: 25px;
+  --bar-h: 3px;
+  --bar-color: #000000;
+
+  position: relative;
+  width: var(--bar-w);
+  height: calc((var(--bar-w) * 3) / 4);
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotate(0deg);
+  transition: transform 800ms cubic-bezier(.17,.67,.13,1) 200ms;
+}
+
+.McButton span{
+  position: absolute;
+  left: 0;
+  width: var(--bar-w);
+  height: var(--bar-h);
+  background: var(--bar-color);
+
+  /* état initial */
+  top: 0;
+  transform: rotate(0deg);
+}
+
+/* positions des barres */
+.McButton span:nth-child(1){ top: 0; }
+.McButton span:nth-child(2){ top: 50%; transform: translateY(-50%); }
+.McButton span:nth-child(3){ top: 100%; transform: translateY(-100%); }
+
+/* transitions — déplacement d’abord, rotation ensuite */
+.McButton span:nth-child(1),
+.McButton span:nth-child(3){
+  transition:
+    top 200ms ease,
+    transform 800ms cubic-bezier(.17,.67,.13,1) 200ms;
+}
+
+.McButton span:nth-child(2){
+  transition: opacity 200ms ease;
+}
+
+/* === ACTIVE === */
+.McButton.is-active{
+  transform: rotate(135deg);
+}
+
+.McButton.is-active span:nth-child(1){
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.McButton.is-active span:nth-child(2){
+  opacity: 0;
+}
+
+.McButton.is-active span:nth-child(3){
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+/* ==========================
+   MENU MOBILE : contenu retardé
+   ========================== */
+.mobile-menu-content{
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+/* Réserve l'espace nécessaire pour éviter le chevauchement
+   (zone bottom + faux footer) */
+.mobile-menu-content{
+  padding-bottom: 240px; /* ajuste 220–280 si besoin */
+}
+
+/* Le panneau est ouvert, mais le contenu n'apparaît que quand on l'autorise */
+.mobile-menu.is-open .mobile-menu-content{
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+/* État "contenu visible" */
+.mobile-menu.is-open.is-content-visible .mobile-menu-content{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
