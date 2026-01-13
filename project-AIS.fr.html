@@ -11,15 +11,21 @@
 
   <link rel="stylesheet" href="css/style.css">
   <!-- Favicons (Google-friendly) -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 </head>
 
 <body>
-  <!-- HEADER (unchanged, same as other pages) -->
   <header class="header">
     <div class="nav">
+      <!-- Burger (mobile) -->
+      <button class="McButton" id="burgerOpen" aria-label="Open menu" aria-expanded="false" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
 
       <!-- Menu gauche -->
       <nav class="nav-left">
@@ -38,7 +44,7 @@
 
         <!-- Language switch -->
         <button class="lang-switch" id="langSwitch" aria-label="Changer la langue">
-          <img src="assets/icons/en.svg" alt="English">
+          <img src="assets/icons/gb.svg" alt="English">
         </button>
 
         <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
@@ -54,8 +60,62 @@
 
     </div>
   </header>
+  <div class="menu-backdrop" id="menuBackdrop" hidden></div>
+
+    <aside class="mobile-menu" id="mobileMenu" hidden>
+        <div class="mobile-menu-top">
+          <button class="McButton" id="burgerClose" aria-label="Close menu" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <p class="mobile-menu-title">PORTFOLIO</p>
+        </div>
+      <div class="mobile-menu-content">
 
 
+
+        <nav class="mobile-menu-links" aria-label="Mobile navigation">
+          <a href="index.fr.html">Accueil</a>
+          <a href="resume.fr.html">CV</a>
+          <a href="projects.fr.html">Projets</a>
+          <a href="skills.fr.html">Compétences</a>
+          <a href="contact.fr.html">Contact</a>
+        </nav>
+
+        <div class="mobile-menu-bottom">
+
+          <div class="mobile-menu-links-bottom">
+            <a class="menu-link-row" href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" rel="noopener">
+              <img src="assets/icons/linkedin-svgrepo-com.svg" alt="">
+              <span>LinkedIn</span>
+            </a>
+
+            <a class="menu-link-row" href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" rel="noopener">
+              <img src="assets/icons/instagram-svgrepo-com.svg" alt="">
+              <span>Instagram</span>
+            </a>
+
+            <a class="menu-link-row" href="https://github.com/Cocomax1904" target="_blank" rel="noopener">
+              <img src="assets/icons/github-svgrepo-com.svg" alt="">
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <button class="mobile-menu-lang" id="mobileLangSwitch" aria-label="Change language">
+            <img src="assets/icons/gb.svg" alt="English">
+            <span class="mobile-lang-text">← cliquer ici pour changer de langue</span>
+          </button>
+
+
+        </div>
+      </div>
+      <div class="mobile-menu-footer">
+        <span>© 2026 – Tous droits réservés</span>
+      </div>
+    
+    </aside>
   <main class="container project-page reveal">
 
     <!-- HERO (different layout vs ALFRED: image first, text second) -->

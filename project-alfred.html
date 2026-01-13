@@ -10,15 +10,22 @@
 
   <link rel="stylesheet" href="css/style.css">
   <!-- Favicons (Google-friendly) -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-  
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 </head>
+
 <body>
   <header class="header">
     <div class="nav">
-  
+      <!-- Burger (mobile) -->
+      <button class="McButton" id="burgerOpen" aria-label="Open menu" aria-expanded="false" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+
       <!-- Menu gauche -->
       <nav class="nav-left">
         <a href="index.html">Home</a>
@@ -27,17 +34,17 @@
         <a href="skills.html">Skills</a>
         <a href="contact.html">Contact</a>
       </nav>
-  
+
       <!-- Nom centré -->
       <a href="index.html" class="logo">Maxime Berlocher's Portfolio</a>
-  
+
       <!-- Réseaux sociaux -->
       <div class="nav-right">
 
-          <!-- Language switch -->
-        <button class="lang-switch" id="langSwitch" aria-label="Change language">
+        <!-- Language switch -->
+        <button class="lang-switch" id="langSwitch" aria-label="Changer la langue">
           <img src="assets/icons/fr.svg" alt="Français">
-        </button>  
+        </button>
 
         <a href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" aria-label="LinkedIn">
           <img src="assets/icons/linkedin-svgrepo-com.svg" alt="LinkedIn">
@@ -49,10 +56,65 @@
           <img src="assets/icons/github-svgrepo-com.svg" alt="GitHub">
         </a>
       </div>
-  
+
     </div>
   </header>
+  <div class="menu-backdrop" id="menuBackdrop" hidden></div>
 
+    <aside class="mobile-menu" id="mobileMenu" hidden>
+        <div class="mobile-menu-top">
+          <button class="McButton" id="burgerClose" aria-label="Close menu" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <p class="mobile-menu-title">PORTFOLIO</p>
+        </div>
+      <div class="mobile-menu-content">
+
+
+
+        <nav class="mobile-menu-links" aria-label="Mobile navigation">
+          <a href="index.html">Home</a>
+          <a href="resume.html">Resume</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="mobile-menu-bottom">
+
+          <div class="mobile-menu-links-bottom">
+            <a class="menu-link-row" href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" rel="noopener">
+              <img src="assets/icons/linkedin-svgrepo-com.svg" alt="">
+              <span>LinkedIn</span>
+            </a>
+
+            <a class="menu-link-row" href="https://www.instagram.com/TON-INSTAGRAM" target="_blank" rel="noopener">
+              <img src="assets/icons/instagram-svgrepo-com.svg" alt="">
+              <span>Instagram</span>
+            </a>
+
+            <a class="menu-link-row" href="https://github.com/Cocomax1904" target="_blank" rel="noopener">
+              <img src="assets/icons/github-svgrepo-com.svg" alt="">
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <button class="mobile-menu-lang" id="mobileLangSwitch" aria-label="Change language">
+            <img src="assets/icons/gb.svg" alt="English">
+            <span class="mobile-lang-text">← Click here to change language</span>
+          </button>
+
+
+        </div>
+      </div>
+      <div class="mobile-menu-footer">
+        <span>© 2026 – All rights reserved.</span>
+      </div>
+    
+    </aside>
   <main class="container project-page reveal">
 
     <!-- HERO -->
