@@ -164,16 +164,20 @@ body {
 /* Mobile menu = page latérale */
 .mobile-menu{
   position: fixed;
+  isolation: isolate;
   top: 0;
   left: 0;
   width: min(92vw, 380px);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   background: #e7decd; /* beige / or très clair */
   border-right: 1px solid rgba(0,0,0,0.10);
 
   z-index: 1000;
-  padding: 22px 20px;
+  padding: 22px 20px 0;
+
 
   transform: translateX(-100%);
   transition: transform 0.35s ease;
@@ -284,14 +288,6 @@ body {
   width: fit-content;
 }
 
-.mobile-menu-social{
-  position: absolute;
-  left: 20px;
-  bottom: 22px;
-  display: flex;
-  gap: 18px;
-}
-
 .mobile-menu-social a{
   text-decoration: none;
   color: rgba(0,0,0,0.85);
@@ -319,23 +315,22 @@ body {
   #burgerOpen{ display: inline-flex; }
 }
 
-.mobile-menu[hidden] .mobile-menu-bottom{
-  display: none;
-}
-
 /* =========================
-   MOBILE MENU — bottom area
+   MOBILE MENU — bottom area (FIX)
 ========================= */
 
 .mobile-menu-bottom{
-  position: absolute;
-  left: 10px;
-  right: 20px;
-  bottom: calc(-200px + env(safe-area-inset-bottom));
+  flex: 0 0 auto;
+  margin-top: auto;      /* pousse ce bloc tout en bas du panneau */
+  margin-bottom: 20px;   /* ✅ 20px EXACT au-dessus du footer */
   display: flex;
   flex-direction: column;
   gap: 18px;
+  z-index: 2;
 }
+
+
+
 
 /* réseaux */
 .mobile-menu-social{
@@ -2186,13 +2181,13 @@ main.container.reveal {
   }
 }
 .mobile-menu-footer{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex: 0 0 auto;
+  width: calc(100% + 40px); /* ✅ compense padding gauche/droite (20px + 20px) */
+  margin-left: -20px;
+  margin-right: -20px;
 
-  height: 110px; /* hauteur du faux footer */
-  background-color: #4b372f; /* marron (ajuste si besoin) */
+  height: 110px;
+  background-color: #4b372f;
 
   display: flex;
   align-items: center;
@@ -2200,6 +2195,9 @@ main.container.reveal {
 
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+
+
 
 .mobile-menu-footer span{
   font-size: 10px;
@@ -2288,7 +2286,13 @@ main.container.reveal {
 /* Réserve l'espace nécessaire pour éviter le chevauchement
    (zone bottom + faux footer) */
 .mobile-menu-content{
-  padding-bottom: 240px; /* ajuste 220–280 si besoin */
+  padding-bottom: 0px; /* ajuste 220–280 si besoin */
+}
+/* ✅ Le contenu prend l'espace disponible et scroll si besoin */
+.mobile-menu-content{
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 /* Le panneau est ouvert, mais le contenu n'apparaît que quand on l'autorise */
