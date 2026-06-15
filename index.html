@@ -5,9 +5,7 @@
   <title>Maxime Berlocher | Portfolio – Étudiant GEII, Électronique & Systèmes embarqués</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio de Maxime Berlocher – projets techniques, mécatronique et systèmes embarqués.">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Allerta&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;500;700;800;900&family=Allerta&display=swap" rel="stylesheet">
 
 
   <link rel="stylesheet" href="css/style.css">
@@ -116,28 +114,28 @@
     </aside>
 <main>
   <section class="hero container reveal">
+    <canvas id="hero-canvas"></canvas>
+
     <div class="hero-left">
       <img src="assets/profile.jpg" alt="Photo de Maxime Berlocher" class="hero-photo">
     </div>
 
     <div class="hero-right">
-      <h1>Maxime Berlocher -<br>Student in Electrical Engineering and Industrial Computing.</h1>
+      <h1><span id="typewriter-target" data-text="Maxime Berlocher — Student in Electrical Engineering &amp; Embedded Systems."></span><span class="typewriter-cursor"></span></h1>
 
       <p>
-        I am an engineering student with a strong interest in automation, embedded systems, and technological innovation. Through my studies and personal projects, I actively develop practical skills in electronics, programming, and system design.
-
-        <br> Scroll below to explore how I am building the foundations of my engineering career.
+        Engineering student with a strong interest in automation, embedded systems, and technological innovation. Developing practical skills in electronics, programming, and system design.
       </p>
 
       <div class="hero-cta">
         <a class="hero-pill" href="https://www.linkedin.com/in/maxime-berlocher-132925225/" target="_blank" rel="noopener">
-          LINKEDIN
+          <span>LINKEDIN</span>
         </a>
         <a class="hero-pill" href="projects.html">
-          PROJECTS
+          <span>PROJECTS</span>
         </a>
         <a class="hero-pill" href="resume.html">
-          RESUME
+          <span>RESUME</span>
         </a>
       </div>
     </div>
@@ -407,6 +405,7 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
 
 </body>
 
